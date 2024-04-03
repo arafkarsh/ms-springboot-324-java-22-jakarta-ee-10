@@ -2,7 +2,7 @@
 
 ## Microservice Structure
 
-![Package Structure](https://raw.githubusercontent.com/arafkarsh/ms-springboot-310-java-17-jakarta-ee-10/master/diagrams/MS-Pkg-Structure.jpg)
+![Package Structure](https://raw.githubusercontent.com/arafkarsh/ms-springboot-324-java-22-jakarta-ee-10/master/diagrams/MS-Pkg-Structure.jpg)
 
 ### What the Template Provides out of the box
 
@@ -37,7 +37,7 @@
 
 ### Step 1.1 - Getting Started
 
-1. git clone [https://github.com/arafkarsh/ms-springboot-310-java-17-jakarta-ee-10.git](https://github.com/arafkarsh/ms-springboot-324-java-22-jakarta-ee-10.git)
+1. git clone [https://github.com/arafkarsh/ms-springboot-324-java-22-jakarta-ee-10.git](https://github.com/arafkarsh/ms-springboot-324-java-22-jakarta-ee-10.git)
 2. cd ms-springboot-324-java-22-jakarta-ee-10
 
 ###  Step 1.2 - Compile (Once your code is ready) 
