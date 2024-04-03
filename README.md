@@ -17,7 +17,7 @@
 ### Pre-Requisites
 
 1. Springboot 3.2.4
-2. Java 22 (Virtual Threads, Structured Concurrency)
+2. Java 22 (Virtual Threads, Structured Concurrency, Scoped Values)
 3. Jakarta EE 10 (jakarta.servlet.*, jakarta.persistence.*, javax.validation.*)
 4. Maven 3.8.6
 5. Git 2.31
