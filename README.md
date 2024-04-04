@@ -112,6 +112,7 @@ production environment.
 ### 2.1 CRUD Operations 
 
 #### 2.1.1 GET Query Execution and Fallback Data
+
 ![Crud Get](https://raw.githubusercontent.com/arafkarsh/ms-springboot-324-java-22-jakarta-ee-10/master/diagrams/crud/crud-1-get-fallback.jpg)
 
 #### 2.1.2 POST Create Data - Product 1
