@@ -38,15 +38,29 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.annotation.RequestScope;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+
+import javax.net.ssl.HttpsURLConnection;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.security.GeneralSecurityException;
+
+import javax.net.ssl.HttpsURLConnection;
 import java.math.BigDecimal;
+import java.security.GeneralSecurityException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -82,6 +96,37 @@ public class ProductControllerImpl extends AbstractController {
 
 	@Autowired
 	ProductService productServiceImpl;
+
+	// @Autowired
+	// private RestClient restClient;
+
+	@GetMapping("/external/delay/{seconds}")
+	public ResponseEntity<String> getDelayedExternalResponse(@PathVariable("seconds") int seconds) {
+		log.info("Delay for the External API (sec) = "+seconds);
+		RestClient restClient = RestClient.create();
+		String url = "http://localhost:9091/ms-cache/api/v1/product/delay/" + seconds;
+		try {
+			String result = restClient.get()
+					.uri(url)
+					.retrieve()
+					.body(String.class);
+			/**
+			RestTemplate restTemplate = new RestTemplate();
+			trustAllCertificates();
+			ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+			 */
+			log.info("ms-cache API Call on port 9091, Result >> "+result);
+			return ResponseEntity.ok(result);
+			// return response; // Return the response from the dummy API
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error calling external API >> "+url);
+		}
+	}
+
+	private void trustAllCertificates() throws GeneralSecurityException {
+		HttpsURLConnection.setDefaultHostnameVerifier((hostname, session) -> true);
+	}
 
 	/**
 	 * Create the Product

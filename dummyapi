@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Default value for seconds
+SECONDS_DEFAULT=1
+
+# Check if a command-line argument is provided for seconds
+if [ "$#" -eq 1 ]; then
+    # Use the provided value for seconds
+    SECONDS="$1"
+else
+    # Use the default value for seconds
+    SECONDS="$SECONDS_DEFAULT"
+fi
+
+echo "Calling Dummy API Service with $SECONDS second(s)"
+echo "curl -k -X GET https://hub.dummyapis.com/delay?seconds=$SECONDS"
+time curl -k -X GET "https://hub.dummyapis.com/delay?seconds=$SECONDS"
+echo
+
